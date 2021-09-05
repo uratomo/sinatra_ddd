@@ -1,7 +1,8 @@
-require "./domain/model/user/user"
+
+require_relative "../../domain/model/user/user"
 require "./domain/model/user/user_name"
 require "./domain/model/user/user_mail"
-require "./domain/model/user/user_data"
+require "./application/user/user_data"
 
 class UserApplicationService
   def initialize(repository, service)
@@ -9,7 +10,7 @@ class UserApplicationService
     @service = service
   end
 
-  def create
+  def create(create_command)
     name = UserName.new(create_command.name)
     mail = UserMail.new(create_command.mail)
     user = User.new(name, mail)
